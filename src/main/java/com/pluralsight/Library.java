@@ -56,10 +56,17 @@ public class Library {
     public static void listCheckedOutBooks (){
         System.out.println("All Books that are checked out: ");
 
+        boolean isAvailableBooks = false;
+
         for (int i = 0; i < numBooks; i++) {
             if (books[i].isCheckedOut()){
                 System.out.println(books[i]);
+                isAvailableBooks = true;
             }
+        }
+
+        if (!isAvailableBooks) {
+            System.out.println("There are no books checked out.");
         }
     }
 
