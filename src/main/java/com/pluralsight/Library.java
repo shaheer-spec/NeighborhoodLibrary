@@ -6,7 +6,7 @@ public class Library {
 
     private static final Book[] books = new Book[30];
 
-    private static final int numBooks = 6;
+    private static final int numBooks = 20;
 
     public static void main(String[] args) {
         Scanner scannerBooks = new Scanner(System.in);
@@ -17,6 +17,20 @@ public class Library {
         books[3] = new Book(4, "978-0-543210-98-6", "Moby Dick", false, "");
         books[4] = new Book(5, "978-1-111111-11-1", "Pride and Prejudice", false, "");
         books[5] = new Book(6, "978-9-876543-21-0", "The Catcher in the Rye", false, "");
+        books[6] = new Book(7, "978-0-141-43955-6", "Jane Eyre", false, "");
+        books[7] = new Book(8, "978-0-7432-7356-5", "The Da Vinci Code", false, "");
+        books[8] = new Book(9, "978-0-452-28423-4", "Brave New World", false, "");
+        books[9] = new Book(10, "978-0-618-00221-3", "The Lord of the Rings", false, "");
+        books[10] = new Book(11, "978-0-7432-7355-8", "Angels and Demons", false, "");
+        books[11] = new Book(12, "978-0-316-76948-0", "The Silent Patient", false, "");
+        books[12] = new Book(13, "978-0-7432-7354-1", "The Hobbit", false, "");
+        books[13] = new Book(14, "978-1-5011-8756-5", "Where the Crawdads Sing", false, "");
+        books[14] = new Book(15, "978-0-307-74445-7", "The Girl on the Train", false, "");
+        books[15] = new Book(16, "978-0-316-76949-7", "Gone Girl", false, "");
+        books[16] = new Book(17, "978-0-452-28424-1", "Animal Farm", false, "");
+        books[17] = new Book(18, "978-0-14-028333-4", "The Alchemist", false, "");
+        books[18] = new Book(19, "978-0-06-112241-5", "The Road", false, "");
+        books[19] = new Book(20, "978-0-14-143960-0", "Wuthering Heights", false, "");
 
         boolean completed = false;
 
@@ -101,8 +115,7 @@ public class Library {
 
         for (int i = 0; i < numBooks; i++) {
             if (books[i].getId() == checkInBookID){
-                books[i].setCheckedOut(false);
-                books[i].setCheckedOutTo("");
+                books[i].checkIn();
 
                 System.out.println("You have checked in: " + books[i].getTitle());
 
@@ -153,11 +166,11 @@ public class Library {
 
         for (int i = 0; i < numBooks; i++) {
             if (books[i].getId() == bookId){
-                books[i].setCheckedOut(true);
 
                 System.out.println("What is your name: ");
                 String nameOnCheckout = scanner.nextLine();
-                books[i].setCheckedOutTo(nameOnCheckout);
+
+                books[i].checkOut(nameOnCheckout);
 
                 System.out.println("You have checked out: " + books[i].getTitle());
 
