@@ -59,4 +59,14 @@ public class Book {
     public String toString() {
         return "Book id = " + id + ", isbn = " + isbn + ", title = " + title + ", isCheckedOut = " + isCheckedOut + ", checkedOutTo = " + checkedOutTo;
     }
+
+    public void checkOut(String name){
+        this.isCheckedOut = true;
+        this.checkedOutTo = name;
+    }
+
+    public void checkIn(){
+        this.isCheckedOut = false;
+        this.checkedOutTo = "";
+    }
 }

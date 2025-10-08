@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class Library {
 
-    private static Book[] books = new Book[20];
+    private static final Book[] books = new Book[30];
 
-    private static int numBooks = 6;
+    private static final int numBooks = 6;
 
     public static void main(String[] args) {
         Scanner scannerBooks = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class Library {
 
                     break;
                 case 2:
-                    listCheckedOutBooks();
+                    listCheckedOutBooks(scannerBooks);
                     break;
                 case 3:
                     System.out.println("Left the program");
@@ -53,8 +53,9 @@ public class Library {
 
     } // main method ends here
 
-    public static void listCheckedOutBooks (){
+    public static void listCheckedOutBooks (Scanner scanner){
         System.out.println("All Books that are checked out: ");
+        System.out.println("==============================================");
 
         boolean isAvailableBooks = false;
 
@@ -67,8 +68,54 @@ public class Library {
 
         if (!isAvailableBooks) {
             System.out.println("There are no books checked out.");
+            System.out.println("Returning to Home screen");
+        }
+
+        if (isAvailableBooks) {
+            System.out.println("C - to Check In a book ");
+            System.out.println("X - to go back to the home screen ");
+            scanner.nextLine();
+            String command2 = scanner.nextLine();
+
+            switch (command2.toUpperCase()){
+                case "C":
+                    checkInBook(scanner);
+                    break;
+
+                case "X":
+                    System.out.println("Returning to Home Screen");
+                    break;
+
+                default:
+                    System.out.println("Please choose between C or X");
+                    break;
+
+            }
         }
     }
+
+    public static void checkInBook (Scanner scanner){
+        System.out.println("What is the id of the book you want to check in");
+        int checkInBookID = scanner.nextInt();
+        boolean found = false;
+
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getId() == checkInBookID){
+                books[i].setCheckedOut(false);
+                books[i].setCheckedOutTo("");
+
+                System.out.println("You have checked in: " + books[i].getTitle());
+
+                found = true;
+            }
+        }
+
+        if (!found){
+            System.out.println("No books matching that id");
+        }
+    }
+
+
 
     public static void listAllBooks(){
         System.out.println("All Books: ");
